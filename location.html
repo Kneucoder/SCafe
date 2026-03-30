@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Locations | Subah Café</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@400;500;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        :root {
+            --primary: #33210d;
+            --on-primary: #ffffff;
+            --primary-container: #4b3621;
+            --on-primary-container: #bd9f83;
+            --primary-fixed-dim: #e1c1a4;
+            --background: #fbf9f5;
+            --on-background: #1b1c1a;
+            --surface: #fbf9f5;
+            --surface-container-low: #f5f3ef;
+            --surface-container: #efeeea;
+            --surface-container-highest: #e4e2de;
+            --surface-container-lowest: #ffffff;
+            --on-surface: #1b1c1a;
+            --on-surface-variant: #4e453d;
+            --outline: #80756c;
+            --outline-variant: #d2c4ba;
+            --tertiary-fixed: #bcf0ae;
+            --on-tertiary-fixed-variant: #23501e;
+            --font-headline: 'Noto Serif', serif;
+            --font-body: 'Manrope', sans-serif;
+            --max-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--on-background);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Navbar */
+        nav.fixed-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgb(255, 255, 255);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--surface-container);
+        }
+
+        .nav-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container img {
+            height: 60px;
+            width: 150px;
+            display: block;
+        }
+
+        .nav-links-desktop {
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .nav-links-desktop {
+                display: flex;
+                gap: 2.5rem;
+                font-family: var(--font-headline);
+                font-size: 1.125rem;
+            }
+        }
+
+        .nav-links-desktop a {
+            color: var(--on-surface-variant);
+        }
+
+        .nav-links-desktop a.active {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .contact-us-btn {
+            background-color: var(--primary);
+            color: var(--on-primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .contact-us-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        /* Push-down Menu */
+        #site-menu-overlay {
+            position: absolute;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            background-color: var(--background);
+            border-top: 1px solid var(--surface-container);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        #site-menu-overlay.is-open {
+            max-height: 100vh;
+        }
+
+        .overlay-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .overlay-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .overlay-content {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .overlay-col h4 {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            color: var(--outline);
+        }
+
+        .overlay-col ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .overlay-col a {
+            font-family: var(--font-headline);
+            font-size: 1.25rem;
+            color: var(--primary);
+        }
+
+        /* Hero */
+        main {
+            padding-top: 80px;
+        }
+
+        .hero {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            max-height: 700px;
+            overflow: hidden;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 70%);
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 3rem;
+        }
+
+        .hero-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.4rem 1.25rem;
+            background-color: var(--tertiary-fixed);
+            color: var(--on-tertiary-fixed-variant);
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-family: var(--font-headline);
+            font-size: clamp(2rem, 6vw, 4rem);
+            color: white;
+            line-height: 1.2;
+            max-width: 900px;
+        }
+
+        /* Content Grid */
+        .content-section {
+            max-width: var(--max-width);
+            margin: -3rem auto 0;
+            padding: 0 1.5rem 4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 1024px) {
+            .grid-layout {
+                grid-template-columns: repeat(12, 1fr);
+            }
+        }
+
+        .card {
+            background-color: var(--surface-container-lowest);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .sanctuary-card {
+            grid-column: span 1;
+        }
+
+        @media (min-width: 1024px) {
+            .sanctuary-card {
+                grid-column: span 7;
+            }
+        }
+
+        .sanctuary-card h2 {
+            font-family: var(--font-headline);
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .sanctuary-card p {
+            font-size: 1rem;
+            color: var(--on-surface-variant);
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            border-top: 1px solid var(--surface-container);
+            padding-top: 2rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 640px) {
+            .contact-info {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .info-item {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .info-item .material-symbols-outlined {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .info-item h4 {
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-item p {
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Hours Card */
+        .hours-card {
+            background-color: var(--primary);
+            color: var(--on-primary);
+            padding: 2rem;
+            border-radius: 1rem;
+            grid-column: span 1;
+        }
+
+        @media (min-width: 1024px) {
+            .hours-card {
+                grid-column: span 5;
+            }
+        }
+
+        .hours-card h3 {
+            font-family: var(--font-headline);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hours-list {
+            margin-bottom: 2rem;
+        }
+
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 0.75rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .hours-time {
+            color: var(--primary-fixed-dim);
+        }
+
+        .note-box {
+            background-color: var(--primary-container);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+            font-style: italic;
+            color: var(--on-primary-container);
+        }
+
+        /* Map Section */
+        .map-container {
+            grid-column: span 1;
+            height: 350px;
+            border-radius: 1rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @media (min-width: 1024px) {
+            .map-container {
+                grid-column: span 12;
+            }
+        }
+
+        .map-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .map-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(51, 33, 13, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-btn {
+            background: var(--surface-container-lowest);
+            padding: 1.25rem 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .map-btn .material-symbols-outlined {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .map-btn span:not(.material-symbols-outlined) {
+            font-family: var(--font-headline);
+            font-size: 1rem;
+            color: var(--primary);
+        }
+
+        /* Bottom Row */
+        .favorites-card {
+            grid-column: span 1;
+            background-color: var(--surface-container-low);
+            padding: 2rem;
+            border-radius: 1rem;
+        }
+
+        @media (min-width: 1024px) {
+            .favorites-card {
+                grid-column: span 4;
+            }
+        }
+
+        .favorites-card h3 {
+            font-family: var(--font-headline);
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .fav-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--outline);
+            border-radius: 50%;
+            margin-top: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .fav-item h5 {
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: var(--on-surface);
+        }
+
+        .fav-item p {
+            font-size: 0.85rem;
+            color: var(--on-surface-variant);
+        }
+
+        .feature-image-container {
+            grid-column: span 1;
+            border-radius: 1rem;
+            overflow: hidden;
+            height: 300px;
+        }
+
+        @media (min-width: 1024px) {
+            .feature-image-container {
+                grid-column: span 8;
+                height: auto;
+            }
+        }
+
+        .feature-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--surface-container-lowest);
+            border-top: 1px solid var(--surface-container);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 2fr 1fr 1fr;
+            }
+        }
+
+        .footer-brand h2 {
+            font-family: var(--font-headline);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: var(--on-surface-variant);
+            font-size: 1rem;
+            max-width: 350px;
+        }
+
+        .footer-col h4 {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            font-weight: 800;
+            color: var(--on-surface);
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-col ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-col a {
+            color: var(--on-surface-variant);
+            font-size: 0.95rem;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--surface-container);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--outline);
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-bottom {
+                flex-direction: row;
+            }
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body>
+<nav class="fixed-nav">
+<div class="nav-container">
+<a class="logo-container" href="index.html">
+<img src="Subahweblogo.png" width="100px" height="auto"  alt="Subah Café Logo" class="nav-logo-img">
+</a>
+<div class="nav-links-desktop">
+<a href="index.html">Home</a>
+<a href="menu.html">Menu</a>
+<a class="active" href="location.html">Locations</a>
+<a href="https://www.toasttab.com/local/order/subah-cafe-101-south-main-street">Shop</a>
+</div>
+<button class="contact-us-btn" id="menu-toggle">
+<span class="material-symbols-outlined">menu</span>
+               
+            </button>
+</div>
+<div id="site-menu-overlay">
+<div class="overlay-content">
+<div class="overlay-col">
+<h4>Main</h4>
+<ul>
+<li><a href="home.html">Home</a></li>
+<li><a href="menu.html">Menu</a></li>
+<li><a href="location.html">Locations</a></li>
+<li><a href="https://www.toasttab.com/local/order/subah-cafe-101-south-main-street">Shop</a></li>
+</ul>
+</div>
+
+</ul>
+</div>
+</div>
+</div>
+</nav>
+<main>
+<section class="hero">
+<img alt="Café Interior" class="hero-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLuLriuvJz-8w2VSC7I51-rPTOoz18mENyWUoSnhTtUG_hUalDumNWo8L7_THzelODBzijlm1MdEF2mcKAH4SCOKvA-e-w1JgMAXqrQK41XPCAOl2rgzFqGhmoTjEA3am2EM6amExcn_gy63DuURMqshFMdnBl2B6bjIEXCzh6ODvY9Ik6lIiiGQHyVIPUhh5vXSEWKnWQByrjK14Vxg8LwPVY2vXoJjclsPfAHO8s6QEo64Gb-JzrGR4v4BDp28SZjh6hjdDIwOY"/>
+<div class="hero-overlay">
+<div class="hero-content">
+<div class="badge">Art of Subah</div>
+<h1>Where the city finds its morning breath.</h1>
+</div>
+</div>
+</section>
+<section class="content-section">
+<div class="grid-layout">
+<!-- Address Card -->
+<div class="card sanctuary-card">
+<h2>Our Sanctuary</h2>
+<p>Welcome to Subah Café. We’ve officially opened our doors to bring the community elevated coffee, artisan eats, and a space designed for connection. From the first grind of the morning to the last seat filled in the afternoon, we’re here to brighten your day. Stop by and see what we’ve been brewing!</p>
+<div class="contact-info">
+<div class="info-item">
+<span class="material-symbols-outlined">location_on</span>
+<div>
+<h4>Address</h4>
+<p>101 S Main St<br/>Lombard, IL 60148</p>
+</div>
+</div>
+<div class="info-item">
+<span class="material-symbols-outlined">call</span>
+<div>
+<h4>Contact</h4>
+<p>(847)845-2071<br/>subahcafe@gmail.com</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Hours Card -->
+<div class="hours-card">
+<h3>Hours</h3>
+<div class="hours-list">
+<div class="hours-row">
+<span>Monday — Friday</span>
+<span class="hours-time">7AM — 3PM</span>
+</div>
+<div class="hours-row">
+<span>Saturday</span>
+<span class="hours-time">7AM — 3PM</span>
+</div>
+<div class="hours-row">
+<span>Sunday</span>
+<span class="hours-time">7AM — 3PM</span>
+</div>
+</div>
+<div class="note-box">
+                        * Note: Hours may vary during holidays(ie. Eid).
+                    </div>
+</div>
+<!-- Map Section -->
+
+</div>
+</div>
+</div>
+<!-- Bottom Features -->
+<div class="favorites-card">
+<h3>Nearby</h3>
+<div class="fav-item">
+<div class="dot"></div>
+<div>
+<h5>Lombard Metra Station</h5>
+<p>2-5 min walk</p>
+</div>
+</div>
+<div class="fav-item">
+<div class="dot"></div>
+<div>
+<h5>Senor Jalalpeno</h5>
+<p>15 min walk</p>
+</div>
+</div>
+</div>
+<div class="feature-image-container">
+<img alt="Coffee Pour" class="feature-img" src="Gemini_Generated_Image_ovjm47ovjm47ovjm.png"/>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<div class="footer-container">
+<div class="footer-grid">
+<div class="footer-brand">
+<h2>Subah Café</h2>
+<p>Crafting intentional moments through heirloom beans and architectural serenity since 2018.</p>
+</div>
+<div class="footer-col">
+<h4>Explore</h4>
+<ul>
+<li><a href="location.html">Locations</a></li>
+<li><a href="menu.html">Menu</a></li>
+<li><a href="about.html">Our Story</a></li>
+<li><a href="home.html">Home</a></li>
+</ul>
+</div>
+<div class="footer-col">
+
+<ul>
+
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2024 Subah Café. All rights reserved.</p>
+<div class="footer-legal">
+<a href="#">Privacy Policy</a>
+<a href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuOverlay = document.getElementById('site-menu-overlay');
+
+        menuToggle.addEventListener('click', () => {
+            const isOpen = menuOverlay.classList.toggle('is-open');
+            const icon = menuToggle.querySelector('.material-symbols-outlined');
+            
+            if (isOpen) {
+                icon.textContent = 'close';
+                menuToggle.style.opacity = '0.8';
+            } else {
+                icon.textContent = 'menu';
+                menuToggle.style.opacity = '1';
+            }
+        });
+
+        // Close menu on link click
+        menuOverlay.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuOverlay.classList.remove('is-open');
+                menuToggle.querySelector('.material-symbols-outlined').textContent = 'menu';
+            });
+        });
+
+        // Sticky Navbar adjustment
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.fixed-nav');
+            if (window.scrollY > 20) {
+                nav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.05)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body></html>

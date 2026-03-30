@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Brewing Guide | Subah Café</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <style>
+        /* CSS Variables based on Tailwind Config */
+        :root {
+            --color-background: #fbf9f5;
+            --color-on-surface: #1b1c1a;
+            --color-secondary-container: #e1e1c9;
+            --color-on-secondary-container: #636451;
+            --color-primary: #33210d;
+            --color-secondary: #5e604d;
+            --color-surface: #fbf9f5;
+            --color-surface-container: #efeeea;
+            --color-surface-container-low: #f5f3ef;
+            --color-surface-container-lowest: #ffffff;
+            --color-on-surface-variant: #4e453d;
+            --color-outline-variant: #d2c4ba;
+            --color-on-primary: #ffffff;
+            --color-primary-container: #4b3621;
+
+            --font-headline: 'Noto Serif', serif;
+            --font-body: 'Manrope', sans-serif;
+        }
+
+        /* Base Styles & Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-on-surface);
+            font-family: var(--font-body);
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        ::selection {
+            background-color: var(--color-secondary-container);
+            color: var(--color-on-secondary-container);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Material Icons */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Reusable Layout Utilities */
+        .container {
+            max-width: 80rem; /* 1280px */
+            margin: 0 auto;
+            padding: 0 1.5rem; /* px-6 */
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            transition: background-color 0.9s;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 5rem;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-brand img {
+            height: 3rem;
+            width: auto;
+        }
+
+        .nav-links {
+            display: none;
+            align-items: center;
+            gap: 3rem;
+            font-family: var(--font-headline);
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+
+        .nav-link {
+            color: #4e453d;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #33210d;
+        }
+
+        .nav-toggle {
+            color: #33210d;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transform: scale(0.95);
+            transition: transform 0.3s;
+        }
+
+        .nav-toggle:active {
+            transform: scale(0.9);
+        }
+
+        .nav-toggle-text {
+            display: none;
+            font-family: var(--font-headline);
+            font-weight: 600;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            background-color: var(--color-surface-container);
+            border-top: 1px solid rgba(210, 196, 186, 0.1);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+
+        .mobile-menu-inner {
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            text-align: center;
+            font-family: var(--font-headline);
+            font-size: 1.125rem;
+        }
+
+        .mobile-menu-link {
+            color: var(--color-primary);
+            transition: color 0.3s;
+        }
+
+        .mobile-menu-link:hover {
+            color: var(--color-secondary);
+        }
+
+        .mobile-menu-link.bold {
+            font-weight: 700;
+            color: var(--color-secondary);
+        }
+
+        /* Main Content Offset */
+        main {
+            padding-top: 5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 716px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 1.5rem;
+            max-width: 56rem;
+            margin: 0 auto;
+        }
+
+        .hero-label {
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--color-surface);
+            margin-bottom: 1rem;
+            display: block;
+            font-size: 0.875rem;
+        }
+
+        .hero-title {
+            font-family: var(--font-headline);
+            font-size: 3rem;
+            color: var(--color-surface);
+            line-height: 1.25;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-divider {
+            width: 6rem;
+            height: 0.25rem;
+            background-color: var(--color-secondary);
+            margin: 0 auto;
+            border-radius: 9999px;
+        }
+
+        /* Guide Intro Section */
+        .guide-intro {
+            padding: 6rem 0;
+            background-color: var(--color-surface);
+        }
+
+        .guide-grid {
+            display: grid;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .guide-text-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .section-title {
+            font-family: var(--font-headline);
+            font-size: 2.25rem;
+            color: var(--color-primary);
+            line-height: 1.25;
+        }
+
+        .section-title.italic {
+            font-style: italic;
+        }
+
+        .guide-desc {
+            color: var(--color-on-surface-variant);
+            font-size: 1.125rem;
+            line-height: 1.625;
+        }
+
+        .guide-quote {
+            background-color: var(--color-surface-container-low);
+            padding: 2rem;
+            border-radius: 0.75rem;
+            border-left: 4px solid var(--color-secondary);
+            font-style: italic;
+            color: var(--color-primary);
+        }
+
+        .guide-img-wrap {
+            position: relative;
+            aspect-ratio: 4 / 5;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .guide-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Steps Section */
+        .steps-section {
+            padding: 6rem 0;
+            background-color: var(--color-surface-container);
+        }
+
+        .steps-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .steps-title {
+            font-family: var(--font-headline);
+            font-size: 1.875rem;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        .steps-subtitle {
+            font-family: var(--font-body);
+            color: var(--color-on-surface-variant);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .step-card {
+            background-color: var(--color-surface-container-lowest);
+            padding: 2.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-0.25rem);
+        }
+
+        .step-card-large {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .step-card-large.reverse {
+            flex-direction: column;
+        }
+
+        .step-img-wrap {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background-color: var(--color-surface-container);
+        }
+
+        .step-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .step-content {
+            width: 100%;
+        }
+
+        .step-header-inline {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-header-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .step-num {
+            font-size: 2.25rem;
+            font-family: var(--font-headline);
+            font-style: italic;
+            color: var(--color-outline-variant);
+        }
+
+        .step-icon {
+            color: var(--color-secondary);
+            font-size: 1.875rem;
+        }
+
+        .step-title {
+            font-family: var(--font-headline);
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .step-text {
+            color: var(--color-on-surface-variant);
+            line-height: 1.625;
+        }
+
+        .step-text-mb {
+            margin-bottom: 1.5rem;
+        }
+
+        .step-small-img {
+            height: 8rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .step-small-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* CTA Section */
+        .cta-wrap {
+            margin-top: 6rem;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-family: var(--font-headline);
+            font-size: 1.875rem;
+            color: var(--color-primary);
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 1.25rem 3rem;
+            background-color: var(--color-primary);
+            color: var(--color-on-primary);
+            font-family: var(--font-headline);
+            font-weight: 600;
+            font-size: 1.125rem;
+            border-radius: 0.375rem;
+            transition: all 0.3s;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            background-color: var(--color-primary-container);
+            transform: translateY(-0.25rem);
+        }
+
+        .cta-icon {
+            margin-left: 0.75rem;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover .cta-icon {
+            transform: translateX(0.25rem);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #efeeea;
+            width: 100%;
+            padding: 3rem 1.5rem;
+            margin-top: auto;
+            border-top: 1px solid rgba(210, 196, 186, 0.2);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-brand {
+            font-size: 1.25rem;
+            font-family: var(--font-headline);
+            color: #33210d;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            letter-spacing: 0.025em;
+        }
+
+        .footer-link {
+            color: #4e453d;
+            opacity: 0.8;
+            transition: opacity 0.3s, color 0.3s;
+        }
+
+        .footer-link:hover {
+            opacity: 1;
+            color: #5e604d;
+        }
+
+        .footer-copy {
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            letter-spacing: 0.025em;
+            color: #4e453d;
+            opacity: 0.8;
+        }
+
+        /* Dark Mode Preferences */
+        @media (prefers-color-scheme: dark) {
+            .navbar { background-color: rgb(254, 254, 254); box-shadow: none; }
+            .nav-link { color: #705949; }
+            .nav-link:hover { color: #fbf9f5; }
+            .nav-toggle { color: #010101; }
+            .footer { background-color: #1b1c1a; }
+            .footer-brand { color: #fbf9f5; }
+            .footer-link, .footer-copy { color: #d2c4ba; }
+        }
+
+        /* Responsive Breakpoints */
+        @media (min-width: 640px) {
+            .nav-toggle-text { display: inline; }
+        }
+
+        @media (min-width: 768px) {
+            .nav-links { display: flex; }
+            .mobile-menu { display: none !important; }
+            .hero-title { font-size: 4.5rem; }
+            .guide-grid { grid-template-columns: repeat(2, 1fr); }
+            .section-title { font-size: 3rem; }
+            .steps-grid { grid-template-columns: repeat(12, 1fr); }
+            .step-card-large { grid-column: span 8; flex-direction: row; }
+            .step-card-large.reverse { flex-direction: row-reverse; }
+            .step-card-small { grid-column: span 4; }
+            .step-img-wrap { width: 33.333%; }
+            .step-card-large .step-content { width: 66.666%; }
+            .steps-title { font-size: 2.25rem; }
+            .footer-content { flex-direction: row; gap: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- TopNavBar -->
+    <nav class="navbar">
+        <div class="container nav-inner">
+            <!-- Brand Logo -->
+             <a href="index.html">
+            <div class="nav-brand">
+                <img src="Subahweblogo.png" alt="Subah Café Logo" />
+            </div>
+            </a>
+            
+            <!-- Navigation Links (Desktop) -->
+            <div class="nav-links">
+                <a class="nav-link" href="home.html">Home</a>
+                <a class="nav-link" href="menu.html">Menu</a>
+                <a class="nav-link" href="locations.html">Locations</a>
+                <a class="nav-link" href="https://www.toasttab.com/local/order/subah-cafe-101-south-main-street">Shop</a>
+            </div>
+            
+            <!-- Trailing Icon Action (Contact Us / Menu Toggle) -->
+            <button class="nav-toggle" onclick="document.getElementById('mobile-menu').classList.toggle('active')">
+                <span class="nav-toggle-text"></span>
+                <span class="material-symbols-outlined" style="font-size: 1.875rem;" data-icon="menu">menu</span>
+            </button>
+        </div>
+        
+        <!-- Push-down Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="mobile-menu-inner">
+                <a class="mobile-menu-link" href="home.html">Home</a>
+                <a class="mobile-menu-link" href="menu.html">Menu</a>
+                <a class="mobile-menu-link" href="locations.html">Locations</a>
+                <a class="mobile-menu-link" href="https://www.toasttab.com/local/order/subah-cafe-101-south-main-street">Shop</a>
+                
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-bg">
+                <img data-alt="Cinematic close-up of dark roasted coffee beans being ground into a wooden bowl with warm morning sunlight and floating dust particles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiqR8CxehA5sT-2qtDGh4_-bf0oB3paLHtNd4K7CTVH6NAg4qABsmsnc3-3zNpmliHjAR0VM_1Vegq-Jvle_Q_TJINIEmzdd_YnNha6kDW7SZurXDmim33Mus9cmQIhpOn0ctxLgTa3XE_8JZswGVN3d5MbGnqidgKylF_tu-F_Gd1CtNCkxNm1Z0NnkUGIG1zGR-efrY3WYOprGXtJBw4uaYLk4lOOCReSemWIJAWEyqZjdv4ljI3NIEJtGAytgi2P5TwjIYM2W0"/>
+            </div>
+            <div class="hero-content">
+                <span class="hero-label">Subah Technique</span>
+                <h1 class="hero-title">The Art of the Pour</h1>
+                <div class="hero-divider"></div>
+            </div>
+        </section>
+
+        <!-- Brewing Guide Introduction -->
+        <section class="guide-intro">
+            <div class="container guide-grid">
+                <div class="guide-text-wrap">
+                    <h2 class="section-title italic">How to do it!</h2>
+                    <p class="guide-desc">
+                        This guide is designed to help you unlock the complex tasting notes of beans right in your kitchen.
+                    </p>
+                    <div class="guide-quote">
+                        "Coffee is not just a drink; it's a moment of clarity. Let's make it just right."
+                    </div>
+                </div>
+                <div class="guide-img-wrap">
+                    <img data-alt="Minimalist aesthetic shot of a ceramic V60 dripper on a glass server with a thin stream of water pouring from a copper kettle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYTaZMGFNWajYZ_13I-R9mdR-arzsI-_Cttd52kgihaj7M38xMKtPrCGHnZHW4QHAbHcsFvIfra-JSy1qqgOu13bM89MJusiLJtmKFwYM2guvMIOCKL1TBmJK-Hv_CC-XM931fr0BSAf7R0fbWaODPj8uvl0w9zGjVmXxk--XUoKyQIbwkMCJSYpnqFVPIRp-v1Ces6WZqfVMNxWeRb3AVGCut7ldeCGkVjKWVO-zWXBzqYALY0Py7vIlDlqrGPyo81WDWugT-FKw"/>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step-by-Step Instructions -->
+        <section class="steps-section">
+            <div class="container">
+                <div class="steps-header">
+                    <h3 class="steps-title">Brewing Guide</h3>
+                    <p class="steps-subtitle">Follow the steps for artisanal excellence</p>
+                </div>
+                
+                <div class="steps-grid">
+                    <!-- Step 1 -->
+                    <div class="step-card step-card-large">
+                        <div class="step-img-wrap">
+                            <img data-alt="Digital thermometer measuring steaming hot water in a stylish black gooseneck kettle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLIaLlHoKT9hG60Pw1Gw_gZtUosyTf_MPBAuMYli5NA_Xtc_O8jjkq8US8xPSnuzvgVg55U-BpR8EEl9_LI-5A3T5nmPFJ-irg89VCiaZE9T2K8csbNmQfjT-9b9-NReBmn0IuoJJ20vIzLwP_KUlCqCq86D_darrEXuLiTt6dleTYRSquemNV2K8siynpu9K5Y_wIPdyKif59ebu7pYS2Vv1rG5UJN0nJJK6O71AwpR7QhyP2fKmwxA0cg2SLjdrjRPAOf6MGkKU"/>
+                        </div>
+                        <div class="step-content">
+                            <div class="step-header-inline">
+                                <span class="step-num">01</span>
+                                <span class="material-symbols-outlined step-icon" data-icon="water_drop">water_drop</span>
+                            </div>
+                            <h4 class="step-title">Heat your water</h4>
+                            <p class="step-text">Bring fresh, filtered water to approximately 205°F (96°C). Avoid using boiling water directly to prevent scorching the delicate oils in the beans.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-card step-card-small">
+                        <div class="step-header-between">
+                            <span class="step-num">02</span>
+                            <span class="material-symbols-outlined step-icon" data-icon="settings_input_component">settings_input_component</span>
+                        </div>
+                        <h4 class="step-title">Grind your beans</h4>
+                        <p class="step-text step-text-mb">Use 20g of freshly roasted coffee. Grind to a medium-fine consistency, similar to kosher salt.</p>
+                        <div class="step-small-img">
+                            <img data-alt="Overhead view of medium-fine ground coffee beans inside a high-end burr grinder hopper" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaDvMWs88slyW5FTmWWDWXNcD4fMswaey1C-zsSLmsEZ04Uk0rqN-l-dwC08W6TlhNOFg6jZAm73TxnVIEMx-77Su122ObOEmUcfivKHXUc9RC1Ap6YzDcYV7dcBd4iRNY54oOglY9ZLJBt1RkBkpIogot1EZnBpY_Xvft5mW1x67L-DQQ5n46XiJ6n3t6DBm24C8rG0DyrmWvWsjsjDAx5ebVIxIv3r41hw8-vn3erQL66UDtktm7LPlSobxnf0aQ1-04UiiFMmo"/>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-card step-card-small">
+                        <div class="step-header-between">
+                            <span class="step-num">03</span>
+                            <span class="material-symbols-outlined step-icon" data-icon="opacity">opacity</span>
+                        </div>
+                        <h4 class="step-title">The Bloom</h4>
+                        <p class="step-text">Pour 40g of water over the grounds. Let it sit for 30 seconds. This releases trapped CO2 and prepares the beans for extraction.</p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="step-card step-card-large reverse">
+                        <div class="step-img-wrap">
+                            <img data-alt="Side profile view of coffee dripping through a paper filter into a carafe with beautiful backlighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUALy4f7Hyj7yIlBHnknJQzyu3_V6TPrSOpS5Ome8EcNeuxhL4FNMbRbeSYd3cgII6AGME6Yl77Gr9Y0opWnLyB9-mV_JLs0ERRq3MdT3h1maKfsEEadvav76GFr4iVP8GyVuIanXDNXFCGcGxVAakcUHwSSako7qqBwTNkGu42gyJ6Qdko6h-CTC9JWwP3ETRvKs7UPVvlpmfdeWR8Ychwo281uihqwq2XMDWDb7kgC2xSmYxy3LONwpObgWLWEFP7vCbQ0Nsid0"/>
+                        </div>
+                        <div class="step-content">
+                            <div class="step-header-inline">
+                                <span class="step-num">04</span>
+                                <span class="material-symbols-outlined step-icon" data-icon="restart_alt">restart_alt</span>
+                            </div>
+                            <h4 class="step-title">The Final Pour</h4>
+                            <p class="step-text">Pour the remaining water in concentric circles, avoiding the edges. Aim for a total brew time of 3:00 minutes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="cta-wrap">
+                    <h3 class="cta-title">Or are you ready to order?</h3>
+                    <a class="cta-button" href="https://www.toasttab.com/local/order/subah-cafe-101-south-main-street">
+                        Order Now
+                        <span class="material-symbols-outlined cta-icon" data-icon="shopping_bag">shopping_bag</span>
+                    </a>
+                </div>
+            </div>
+        </section>

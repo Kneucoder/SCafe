@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Catering | Let's Café</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#33210d",
+              "inverse-surface": "#30312e",
+              "primary-fixed-dim": "#e1c1a4",
+              "on-secondary": "#ffffff",
+              "on-error-container": "#93000a",
+              "primary-container": "#4b3621",
+              "surface-tint": "#725a42",
+              "on-secondary-fixed-variant": "#474836",
+              "on-secondary-container": "#636451",
+              "surface-container": "#efeeea",
+              "secondary-fixed": "#e4e4cc",
+              "on-tertiary-fixed-variant": "#23501e",
+              "surface-dim": "#dbdad6",
+              "secondary-container": "#e1e1c9",
+              "surface-container-low": "#f5f3ef",
+              "surface-container-highest": "#e4e2de",
+              "error": "#ba1a1a",
+              "on-primary-fixed-variant": "#59422c",
+              "outline": "#80756c",
+              "primary-fixed": "#fedcbe",
+              "tertiary-fixed-dim": "#a1d494",
+              "on-tertiary-fixed": "#002201",
+              "on-surface": "#1b1c1a",
+              "on-error": "#ffffff",
+              "tertiary-fixed": "#bcf0ae",
+              "surface-bright": "#fbf9f5",
+              "tertiary-container": "#164313",
+              "background": "#fbf9f5",
+              "surface-variant": "#e4e2de",
+              "on-background": "#1b1c1a",
+              "surface-container-high": "#eae8e4",
+              "surface": "#fbf9f5",
+              "error-container": "#ffdad6",
+              "secondary": "#5e604d",
+              "on-tertiary": "#ffffff",
+              "on-primary-fixed": "#291806",
+              "secondary-fixed-dim": "#c8c8b0",
+              "tertiary": "#002c02",
+              "on-primary": "#ffffff",
+              "inverse-primary": "#e1c1a4",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-container": "#7fb174",
+              "on-surface-variant": "#4e453d",
+              "outline-variant": "#d2c4ba",
+              "inverse-on-surface": "#f2f0ed",
+              "on-secondary-fixed": "#1b1d0e",
+              "on-primary-container": "#bd9f83"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .serif-italic { font-family: 'Noto Serif'; font-style: italic; }
+        .glass-nav { background-color: rgba(251, 249, 245, 0.8); backdrop-filter: blur(12px); }
+        body { background-color: #fbf9f5; color: #1b1c1a; }
+    </style>
+</head>
+<body class="font-body selection:bg-secondary-container selection:text-primary">
+<!-- TopNavBar -->
+<nav class="navbar">
+    <div class="container nav-content">
+        <a href="/" class="logo-link">
+            <img src="Subahweblogo.png" width="150px" height="auto"  alt="Subah Café Logo" class="nav-logo-img">
+        </a>
+
+        <div class="nav-links">
+            <a class="active" href="home.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="locations.html">Locations</a>
+            <a href="https://www.toasttab.com/local/order/subah-cafe-101-south-main-street">Shop</a>
+        </div>
+        <button class="btn-contact">Contact Us</button>
+    </div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative h-[819px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Catering Hero" class="w-full h-full object-cover brightness-[0.85]" data-alt="Luxurious long wooden table set for catering with artisanal coffee carafes, fresh croissants, and soft morning light filtering through windows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfMhUxob5vtHEaZ-m-fxDK2_WlaBefsrcb8NABzPN5L41Puoz5ZJgj5Yxrz0uQftGfFANy4z2WO9dvURgVcF6jX3VILLtXaHIqEr2HjZVcDJg1hcWARxHfRyXRFpjeyGWs1sL_6j9bnCvX7MjIXL6TsGIch33E_D41CgQHi9iINdQE1NYULSS_FT_68bPTfoOpFMmmPT8unRa6z_sdx-VZv6UWx3mGbnlThGse8lLqaymr-bpaQqLvxHYlQ_1YqApCgcXA7BaRICM"/>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/40 to-transparent"></div>
+</div>
+<div class="container mx-auto px-8 relative z-10">
+<div class="max-w-2xl">
+<h1 class="font-headline text-6xl md:text-7xl text-white leading-tight mb-6">
+                        Let's Café - <span class="italic">Catering</span>
+</h1>
+<p class="text-xl text-surface-bright/90 font-light tracking-wide mb-10 max-w-lg">
+                        Artisanal coffee and curated bites for your special gatherings. From intimate brunches to grand celebrations.
+                    </p>
+<a class="inline-flex items-center gap-2 bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-surface-container transition-all" href="#inquiry">
+                        Request a Quote
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Catering Packages -->
+<section class="py-24 bg-surface px-8">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline text-4xl text-primary mb-4">Curated Packages</h2>
+<p class="text-on-surface-variant max-w-xl mx-auto">Choose from our signature experiences designed to elevate your event with the finest artisanal touch.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+<!-- Package 1 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden flex flex-col hover:translate-y-[-8px] transition-transform duration-300">
+<div class="h-64 overflow-hidden">
+<img alt="The Morning Ritual" class="w-full h-full object-cover" data-alt="Close-up of a perfectly poured latte and a variety of freshly baked flaky pastries on a rustic wooden tray" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWXHZs7Fzx6tWmtuUos6XrS1MDFf88vBS5hFTG7mEHstteVaY7eQxJ80Sd-SpyyHEw-NJf5K2SjewDg6SoR67Wi6rrGhRESFiUVbJmvuzgBR48A3yt5rKp7SpCJFpEQ0uONjwLnvllQqYVrK6Uz5fmtXIqPpX-lBMcE-q_pD8S2ejH_xPc-AzjyqxTaW2ATU0hGfa73Ys5_SbY6D8MRj3Xv8IlXxQpR4OeAmYMlsl9ZR_BA_CUlQZ98lIt4wGPBGlZw52JpRcmOhI"/>
+</div>
+<div class="p-8 flex-grow flex flex-col">
+<h3 class="font-headline text-2xl text-primary mb-2">The Morning Ritual</h3>
+<p class="text-on-surface-variant mb-6 flex-grow">A curated selection of single-origin brews, house-made granola parfaits, and artisanal croissants.</p>
+<div class="flex items-center justify-between pt-6 border-t border-outline-variant/30">
+<span class="text-sm font-label uppercase tracking-widest text-secondary">Starting at</span>
+<span class="text-2xl font-headline text-primary">$15 / guest</span>
+</div>
+</div>
+</div>
+<!-- Package 2 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden flex flex-col hover:translate-y-[-8px] transition-transform duration-300">
+<div class="h-64 overflow-hidden">
+<img alt="The Artisan Lunch" class="w-full h-full object-cover" data-alt="Elegant platter of gourmet open-faced sandwiches with fresh greens and specialty coffee being poured into porcelain cups" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZ8C_B3YnM6X64QZPRigzuu34ToOjERxpJE_bOwHHw8N1lOjLbVloHXUDwi6fmdPiqMWE5KLR8FsW50EbFHkc0VbZxWL0oRXYvd9vLgfh217KN07MjdpER0MRoAkGmOAslA6ww9-IzTRq5JMgsnExcwboTTD6CiD_sF5LzSsMwLImWhclMuKPJCyunfLD9LQkiVf5ERtzdtCl0x5wAUEBY78I00LwM9Z3jsLROhCxV9s1vATfCyW4jOJ2Lv9BOqndd5601yGhOn0w"/>
+</div>
+<div class="p-8 flex-grow flex flex-col">
+<h3 class="font-headline text-2xl text-primary mb-2">The Artisan Lunch</h3>
+<p class="text-on-surface-variant mb-6 flex-grow">Seasonal sourdough tartines, harvest grain bowls, and our signature cold brew infusion bar.</p>
+<div class="flex items-center justify-between pt-6 border-t border-outline-variant/30">
+<span class="text-sm font-label uppercase tracking-widest text-secondary">Starting at</span>
+<span class="text-2xl font-headline text-primary">$28 / guest</span>
+</div>
+</div>
+</div>
+<!-- Package 3 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden flex flex-col hover:translate-y-[-8px] transition-transform duration-300">
+<div class="h-64 overflow-hidden">
+<img alt="The Grand Celebration" class="w-full h-full object-cover" data-alt="A grand wedding catering setup with multi-tiered cake, specialty coffee station, and elegant floral arrangements in soft dusk light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7nNbh-61J5AVMN8F4rAjeQeFwnjBVItNudFUxAvjLl3-on4VWZOoZzazZc9L-aBZVT3NScqNICSXEpoFPvJ8OARYteDsOlhwPDxN3a5XmgnQh7V59YoS2OAJoZaWPP-CNlIZp_xfg_gw0QdHFp77dXNo3DePSEM3JvK5XNltKawRkSylDV_e38ghaUnOVxcRpn5gb2h9upqpCY2xzWLDhE51zLpY41p2sPx3k0YAJD8V5f1y0EFuiOWbFI_d3WUbnoqSNeRXdTwI"/>
+</div>
+<div class="p-8 flex-grow flex flex-col">
+<h3 class="font-headline text-2xl text-primary mb-2">The Grand Celebration</h3>
+<p class="text-on-surface-variant mb-6 flex-grow">Full barista service, tiered dessert towers, savory hors d'oeuvres, and bespoke coffee cocktails.</p>
+<div class="flex items-center justify-between pt-6 border-t border-outline-variant/30">
+<span class="text-sm font-label uppercase tracking-widest text-secondary">Starting at</span>
+<span class="text-2xl font-headline text-primary">$55 / guest</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Custom Events Bento -->
+<section class="py-24 bg-surface-container px-8">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div>
+<h2 class="font-headline text-4xl text-primary mb-6">Bespoke Events</h2>
+<p class="text-on-surface-variant text-lg leading-relaxed mb-8">
+                            Whether it's a high-stakes board meeting, an intimate wedding, or a neighborhood gala, we tailor every detail to your vision. Our team works closely with you to curate menus that reflect your taste and the unique atmosphere of your gathering.
+                        </p>
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<span class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">groups</span>
+</span>
+<div>
+<h4 class="font-bold text-primary">Corporate Gatherings</h4>
+<p class="text-sm text-on-surface-variant">Boost productivity with premium caffeine and brain-fueling bites.</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">favorite</span>
+</span>
+<div>
+<h4 class="font-bold text-primary">Weddings &amp; Socials</h4>
+<p class="text-sm text-on-surface-variant">Celebrate love and life with our most sophisticated service packages.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 h-[500px]">
+<div class="rounded-xl overflow-hidden row-span-2">
+<img alt="Corporate Event" class="w-full h-full object-cover" data-alt="Overhead shot of a sophisticated corporate event lounge with coffee stations and minimalist decor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZUleO4arYQDQwdSGJOeUS6vWZrvhAVzkCOnu5eisOqMeYVki_hXByXAlZ27QitUuM5V0f32I3wf-ZDPPuzgbXTP4MTljPVphc-LGzW73Dy5spvEa5JIzQiQdf5FsS0CwNEi-pAF1L5G8TdoCvOKtKPS2uIcfAlzvM_QNZ2imylpstwQJ71ZLZLl4TG09jGqwaML8DvTaNFW3WDWK8TklibnzTztS2o4lokjCzQ8bjbCIY8xrju8ceKdNH_Pp7vAKqH3PATSxUYwY"/>
+</div>
+<div class="rounded-xl overflow-hidden">
+<img alt="Social Gathering" class="w-full h-full object-cover" data-alt="A festive outdoor wedding reception with strings of lights and people enjoying coffee at small tables" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiqW-kaEx9CugDFdxOjfuWvdlK7bVG-XMIYFpWUnLEuhpOVSq6muX3N0Xbtvvqtu1qMhBpCPl9Dlxqm7R1pUUjLjXmhSNkPktjc15W7O6lWlWx0CoLKQOnASF8rUZWu-r_guAx5u1QSHtDPJNy2VsjgNE1b37RPOXL6uOByAHD_N0CYl50jxX5zpCWcEQwMWEmkZJ5-k6QCf-JT3Ot27ThAEkWeLhnQWbgtRpu495eh34Ih28HV5QHBD6VVOyuzG2vTYdCoK6_Gjk"/>
+</div>
+<div class="rounded-xl overflow-hidden bg-tertiary-container flex items-center justify-center p-8 text-center">
+<div>
+<h3 class="text-tertiary-fixed font-headline text-xl mb-2">150+</h3>
+<p class="text-on-tertiary-container text-xs font-label uppercase tracking-widest">Custom Events Served Last Year</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- How It Works -->
+<section class="py-24 bg-surface px-8 border-y border-outline-variant/10">
+<div class="max-w-5xl mx-auto text-center">
+<h2 class="font-headline text-4xl text-primary mb-16">The Journey to Perfection</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+<!-- Connector line for desktop -->
+<div class="hidden md:block absolute top-12 left-1/4 right-1/4 h-[1px] bg-outline-variant/30 -z-0"></div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-24 h-24 rounded-full bg-surface-container-highest flex items-center justify-center mb-6 border-4 border-surface">
+<span class="text-3xl font-headline text-primary italic">01</span>
+</div>
+<h3 class="font-bold text-primary text-xl mb-3">Consult</h3>
+<p class="text-on-surface-variant text-sm">Share your vision, guest count, and date with our events coordinator.</p>
+</div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-24 h-24 rounded-full bg-surface-container-highest flex items-center justify-center mb-6 border-4 border-surface">
+<span class="text-3xl font-headline text-primary italic">02</span>
+</div>
+<h3 class="font-bold text-primary text-xl mb-3">Customize</h3>
+<p class="text-on-surface-variant text-sm">Fine-tune your menu from beans to bites with our artisanal chefs.</p>
+</div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-24 h-24 rounded-full bg-surface-container-highest flex items-center justify-center mb-6 border-4 border-surface">
+<span class="text-3xl font-headline text-primary italic">03</span>
+</div>
+<h3 class="font-bold text-primary text-xl mb-3">Celebrate</h3>
+<p class="text-on-surface-variant text-sm">Sit back as our professional team executes your event flawlessly.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Inquiry Form -->
+<section class="py-24 bg-surface-container-low px-8" id="inquiry">
+<div class="max-w-4xl mx-auto">
+<div class="bg-white rounded-2xl shadow-sm p-10 md:p-16 border border-outline-variant/20">
+<div class="text-center mb-12">
+<span class="text-secondary font-label uppercase tracking-widest text-xs font-bold mb-4 block">Reservation</span>
+<h2 class="font-headline text-4xl text-primary">Request a Quote</h2>
+<p class="text-on-surface-variant mt-4">Tell us about your event, and we'll get back to you within 24 hours.</p>
+</div>
+<form class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-2">
+<label class="block text-sm font-medium text-on-surface-variant">Full Name</label>
+<input class="w-full bg-surface-container-low border-none rounded-md px-4 py-3 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="John Doe" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="block text-sm font-medium text-on-surface-variant">Email Address</label>
+<input class="w-full bg-surface-container-low border-none rounded-md px-4 py-3 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="john@example.com" type="email"/>
+</div>
+<div class="space-y-2">
+<label class="block text-sm font-medium text-on-surface-variant">Event Type</label>
+<select class="w-full bg-surface-container-low border-none rounded-md px-4 py-3 focus:ring-2 focus:ring-primary/20 transition-all text-on-surface-variant">
+<option>Corporate Meeting</option>
+<option>Wedding</option>
+<option>Private Brunch</option>
+<option>Community Event</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="block text-sm font-medium text-on-surface-variant">Event Date</label>
+<input class="w-full bg-surface-container-low border-none rounded-md px-4 py-3 focus:ring-2 focus:ring-primary/20 transition-all" type="date"/>
+</div>
+<div class="space-y-2">
+<label class="block text-sm font-medium text-on-surface-variant">Guest Count</label>
+<input class="w-full bg-surface-container-low border-none rounded-md px-4 py-3 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="e.g. 50" type="number"/>
+</div>
+<div class="space-y-2">
+<label class="block text-sm font-medium text-on-surface-variant">Primary Package Interest</label>
+<select class="w-full bg-surface-container-low border-none rounded-md px-4 py-3 focus:ring-2 focus:ring-primary/20 transition-all text-on-surface-variant">
+<option>The Morning Ritual</option>
+<option>The Artisan Lunch</option>
+<option>The Grand Celebration</option>
+<option>Fully Bespoke</option>
+</select>
+</div>
+<div class="md:col-span-2 space-y-2">
+<label class="block text-sm font-medium text-on-surface-variant">Tell us more about your event</label>
+<textarea class="w-full bg-surface-container-low border-none rounded-md px-4 py-3 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Special dietary requirements, theme, or specific brew requests..." rows="4"></textarea>
+</div>
+<div class="md:col-span-2 pt-4">
+<button class="w-full bg-primary text-on-primary py-4 rounded-lg font-bold hover:bg-primary-container transition-all shadow-md hover:shadow-lg" type="submit">
+                                Submit Inquiry
+                            </button>
+</div>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#efeeea] dark:bg-stone-950 w-full py-12 px-8 border-t border-[#d2c4ba]/20 dark:border-stone-800 font-['Manrope'] text-sm tracking-wide">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto text-[#33210d] dark:text-stone-200">
+<div>
+<div class="text-lg font-serif text-[#33210d] dark:text-[#fbf9f5] mb-4">Let's Café</div>
+<p class="text-[#4e453d] dark:text-stone-500 leading-relaxed">
+                    Crafting moments of artisanal excellence through coffee and curation since 2018.
+                </p>
+</div>
+<div>
+<h4 class="font-bold mb-4 uppercase tracking-tighter text-xs">Quick Links</h4>
+<ul class="space-y-2">
+<li><a class="text-[#4e453d] dark:text-stone-500 hover:text-[#33210d] dark:hover:text-stone-200 underline transition-all" href="#">Privacy Policy</a></li>
+<li><a class="text-[#4e453d] dark:text-stone-500 hover:text-[#33210d] dark:hover:text-stone-200 underline transition-all" href="#">Terms of Service</a></li>
+<li><a class="text-[#4e453d] dark:text-stone-500 hover:text-[#33210d] dark:hover:text-stone-200 underline transition-all" href="#">Shipping &amp; Returns</a></li>
+<li><a class="text-[#4e453d] dark:text-stone-500 hover:text-[#33210d] dark:hover:text-stone-200 underline transition-all" href="#">Wholesale</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-4 uppercase tracking-tighter text-xs">Connect</h4>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-secondary cursor-pointer">social_leaderboard</span>
+<span class="material-symbols-outlined text-secondary cursor-pointer">camera</span>
+<span class="material-symbols-outlined text-secondary cursor-pointer">alternate_email</span>
+</div>
+</div>
+<div>
+<p class="text-[#4e453d] dark:text-stone-500">© 2024 Let's Café. Artisanal Brew &amp; Curation.</p>
+</div>
+</div>
+</footer>
+</body></html>

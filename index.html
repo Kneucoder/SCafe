@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subah Cafe | Welcome</title>
+    <style>
+        :root { --apple-gray: #86868b; --apple-black: #1d1d1f; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: -apple-system, sans-serif; 
+            background-color: #ffffff; 
+            color: var(--apple-black);
+            height: 200vh; /* Room to scroll for the redirect */
+            overflow-x: hidden;
+        }
+
+        /* --- MAIN VIEWPORT --- */
+        .wrapper {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: fixed; /* Keeps it centered while drawing */
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        /* --- THE LOGO GROUP --- */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+            padding-right: 5vh;
+        }
+
+        svg { width: 380px; height: auto; overflow: visible; }
+
+        .signature-path {
+            fill: none;
+            stroke: #1d1d1f;
+            stroke-width: 1.3; 
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 2000;
+            stroke-dashoffset: 2000;
+            animation: drawSignature 3.5s cubic-bezier(0.45, 0, 0.55, 1) forwards;
+        }
+
+        @keyframes drawSignature { to { stroke-dashoffset: 0; } }
+
+        .cafe-wrap {
+            opacity: 0;
+            transform: translateX(-15px);
+            transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1) 2.5s; 
+            padding-left: 30px;
+            margin-left: -5px; 
+            border-left: 1px solid #d2d2d7;
+        }
+
+        .cafe-wrap.show { opacity: 1; transform: translateX(0); }
+        .cafe-title { font-size: 72px; font-weight: 600; letter-spacing: 8px; line-height: 0.9; }
+
+        /* --- WELCOME TEXT (BELOW LOGO) --- */
+        .welcome-box {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 1s ease 3.2s; /* Appears after CAFE slides in */
+        }
+
+        .welcome-box.show { opacity: 1; transform: translateY(0); }
+
+        .scroll-msg { 
+            color: var(--apple-gray); 
+            font-size: 14px; 
+            letter-spacing: 3px; 
+            text-transform: uppercase;
+        }
+
+        .indicator {
+            font-size: 24px;
+            color: var(--apple-gray);
+            margin-top: 15px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-8px);}
+            60% {transform: translateY(-4px);}
+        }
+        /* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+    /* Scale down the signature SVG */
+    svg { 
+        width: 180px; /* Reduced from 380px */
+    }
+
+    /* Adjust the 'CAFE' container spacing */
+    .cafe-wrap {
+        padding-left: 15px; /* Tighter spacing */
+    }
+
+    /* Shrink the text sizes */
+    .cafe-title { 
+        font-size: 32px; /* Reduced from 72px */
+        letter-spacing: 4px; 
+    }
+
+    .cafe-subtitle {
+        font-size: 8px; /* Tiny subtitle to match the aesthetic */
+        letter-spacing: 2px;
+        color: var(--apple-gray);
+        white-space: nowrap;
+    }
+
+    /* Bring the logo and welcome text closer */
+    .logo-container {
+        margin-bottom: 20px;
+       
+    }
+}
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="logo-container">
+            <svg viewBox="0 65 140 75" xmlns="http://www.w3.org/2000/svg">
+                <path class="signature-path" d="M125.08,111.77l-5.9,4.82c-.44-2.22,2.95-8.99-1.72-5.64,0,0-6.11,6.54-6.11,6.54,2.21-3.73,8.94-29.06,14.43-25.19,3.11,2.2-18.52,35.86-19.47,16.33-1.91,8.5-9.17,7.95-1.77-.44-1.59,2.29-16.61,10.81-12.54,14.81,5.25-1.65,4.37-8.82,4-13,0,0-6.6,4.23-6.6,4.23,2.11-2.74,8.41-22.74,13.6-20.22s-24.94,32.94-18.4,13.9c-4.02,8.89-13.4,11.88-6.97-.63-2.45,1.06-10.66,12.1-18.88,17.09-11.22,7.97-17.84,15-5.44,12.27,15.15-5.59,18.72-12.36,7.99-19.13-5.99-5.09-19.15-5.68-16.29-11.5,10.4-20.72,49.93-37.19,18.28-.3"/>
+            </svg>
+            <div class="cafe-wrap" id="cafeWrap">
+                <div class="cafe-title">CAFE</div>
+                <div class="cafe-subtitle">BREAKFAST & LUNCH</div>
+            </div>
+        </div>
+
+        <div class="welcome-box" id="welcomeBox">
+            <div class="scroll-msg">Welcome to Subah</div>
+            <div class="indicator">↓</div>
+        </div>
+    </div>
+
+    <script>
+        // Start transitions after page loads
+        window.onload = () => {
+            document.getElementById('cafeWrap').classList.add('show');
+            document.getElementById('welcomeBox').classList.add('show');
+        };
+
+        // Redirect on scroll
+        let triggered = false;
+        window.onscroll = () => {
+            if (!triggered && window.scrollY > 400) {
+                triggered = true;
+                document.body.style.transition = "opacity 0.6s";
+                document.body.style.opacity = "0";
+                setTimeout(() => {
+                    window.location.href = "home.html";
+                }, 600);
+            }
+        };
+
+        // Reset scroll position on refresh
+        if (history.scrollRestoration) { history.scrollRestoration = 'manual'; }
+        window.scrollTo(0, 0);
+    </script>
+</body>
+</html>

@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Menu | Subah Café</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700;900&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+        :root {
+            --primary: #33210d;
+            --background: #fbf9f5;
+            --surface: #ffffff;
+            --text: #1b1c1a;
+            --text-variant: #4e453d;
+            --accent: #bcf0ae;
+            --outline: #d2c4ba;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.5;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, .logo-link {
+            font-family: 'Noto Serif', serif;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background: rgb(255, 255, 255);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            transition: var(--transition);
+        }
+
+        .nav-content {
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo-img {
+            display: block;
+            height: 45px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-variant);
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        /* Hamburger Styles */
+        .hamburger-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 24px;
+            height: 18px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 0;
+        }
+
+        .bar {
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .hamburger-btn.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger-btn.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-btn.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Mobile Menu Push */
+        .mobile-menu-push {
+            display: none;
+            background: var(--surface);
+            padding: 1rem 2rem 2rem;
+            border-bottom: 1px solid var(--outline);
+            flex-direction: column;
+            gap: 1.25rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        .navbar.mobile-active .mobile-menu-push {
+            display: flex;
+        }
+
+        .mobile-menu-push a {
+            text-decoration: none;
+            color: var(--primary);
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 0.5rem 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 80px;
+            text-align: center;
+            background: linear-gradient(rgba(251, 249, 245, 0.7), rgba(251, 249, 245, 0.7)), 
+                        url('https://lh3.googleusercontent.com/aida-public/AB6AXuD1gG1-clirxyffX9foZQdS_7yXeJbUF5AXqVbqY8XvomBK7O_Qn8i-ejHnPcCXtWYQDIckSGk_rBCZxLI0AvfF72nFMObqmAGbwpiIuxw_0J61bn6wkDBKxXWfXkP_sBTX0IcN3AGeBOAop94Je2hjJexQfGb_H6uvHYtaQ8piSuu4xjx2BeFF_w2XG6PW5NcW_TmVYdAuZAUHULKBnlTkCzh0gF7suYVexo1VzT62B2wBPBpT2iFzUxLnAmEyFgyQd9_8m80zvT4');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-variant);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Category Navigation (Tabs) */
+        .category-nav {
+            position: sticky;
+            top: 80px;
+            background: var(--surface);
+            z-index: 900;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--outline);
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+        }
+
+        .category-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-list {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: flex-start;
+        }
+
+        .category-tab {
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            border: 1px solid var(--outline);
+            background: transparent;
+            color: var(--text-variant);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .category-tab:hover {
+            background: rgba(0,0,0,0.03);
+            border-color: var(--text-variant);
+        }
+
+        .category-tab.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #ffffff;
+        }
+
+        /* Menu Grid */
+        .menu-section {
+            padding: 4rem 0;
+            flex-grow: 1;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Card Styles */
+        .menu-card {
+            background: var(--surface);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.06);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            height: 100%;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+        }
+
+        .image-box {
+            height: 240px;
+            width: 100%;
+            background-color: #f0f0f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .menu-card:hover .image-box img {
+            transform: scale(1.05);
+        }
+
+        .price-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(51, 33, 13, 0.9);
+            color: white;
+            padding: 0.35rem 0.75rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+        }
+
+        .card-content p {
+            font-size: 0.95rem;
+            color: var(--text-variant);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        .read-more-btn {
+            background: #f8f8f8;
+            border: 1px solid #eee;
+            padding: 0.75rem;
+            border-radius: 8px;
+            width: 100%;
+            font-weight: 700;
+            color: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .read-more-btn:hover {
+            background: #f0f0f0;
+            border-color: #ddd;
+        }
+
+        /* Nutrition Overlay */
+        .nutrition-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: var(--surface);
+            transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            z-index: 10;
+            padding: 0 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .nutrition-overlay.active {
+            height: 100%;
+            padding: 1.5rem;
+        }
+
+        .nutrition-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .nutrition-item {
+            text-align: center;
+            background: var(--background);
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .nutrition-item span {
+            display: block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            color: var(--text-variant);
+            letter-spacing: 1px;
+            margin-bottom: 0.25rem;
+        }
+
+        .nutrition-item strong {
+            font-size: 1.1rem;
+            color: var(--primary);
+            display: block;
+        }
+
+        .close-nutrition {
+            margin-top: 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            width: 100%;
+            font-family: inherit;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: #d2c4ba;
+            padding: 5rem 0 3rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            color: white;
+            margin-bottom: 0.5rem;
+            font-size: 1.75rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .footer-links a {
+            color: inherit;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.25rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hamburger-btn {
+                display: flex;
+            }
+            .hero {
+                padding: 140px 0 60px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .menu-grid {
+                grid-template-columns: 1fr;
+                max-width: 450px;
+                margin: 0 auto;
+            }
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-links {
+                justify-content: center;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar" id="main-nav">
+<div class="container nav-content">
+<a class="logo-link" href="home.html">
+<img alt="Subah Café Logo" class="nav-logo-img" src="Subahweblogo.png"/>
+</a>
+<div class="nav-links">
+<a href="home.html">Home</a>
+<a class="active" href="menu.html">Menu</a>
+<a href="location.html">Locations</a>
+<a href="https://www.toasttab.com/local/order/subah-cafe-101-south-main-street">Shop</a>
+</div>
+<button aria-label="Toggle Navigation" class="hamburger-btn" id="hamburger">
+<span class="bar"></span>
+<span class="bar"></span>
+<span class="bar"></span>
+</button>
+</div>
+<div class="mobile-menu-push" id="mobile-menu">
+<a href="home.html">Home</a>
+<a href="menu.html">Menu</a>
+<a href="locations.html">Locations</a>
+<a href="https://www.toasttab.com/local/order/subah-cafe-101-south-main-street">Shop</a>
+</div>
+</nav>
+<section class="hero">
+<div class="container">
+<h1>Full Menu</h1>
+<p>Crafted with fresh ingredients and a passion for flavor.</p>
+</div>
+</section>
+<nav class="category-nav">
+<div class="container">
+<div class="category-list" id="category-tabs">
+<!-- Tabs will be injected by JS -->
+</div>
+</div>
+</nav>
+<main class="menu-section">
+<div class="container">
+<div class="menu-grid" id="menu-display">
+<!-- Items will be injected by JS -->
+</div>
+</div>
+</main>
+<footer>
+<div class="container">
+<div class="footer-content">
+<div>
+<h2 class="footer-logo">Subah Café</h2>
+<p>© 2026 Subah Café. All rights reserved.</p>
+</div>
+<div class="footer-links">
+<a href="#">Privacy</a>
+<a href="#">Terms</a>
+<a href="#">Contact</a>
+</div>
+</div>
+</div>
+</footer>
+      <script>
+    // 1. DATA STRUCTURE 
+    const menuData = {
+        "Omelets": [
+            { name: "Avocado Bacon", img: "omelet.png", price: "14.50" },
+            { name: "Protein Power", img: "omelet.png", price: "15.00" },
+            { name: "Southwest Heat", img: "omelet.png", price: "13.50" },
+            { name: "Leaf & Feta", img: "omelet.png", price: "12.50" },
+            { name: "Fajita", img: "omelet.png", price: "14.00" },
+            { name: "Chicken Poblano", img: "omelet.png", price: "14.50" },
+            { name: "Pastrami Ridge", img: "omelet.png", price: "16.00" }
+        ],
+        "Skillet": [
+            { name: "Chilaquiles", img: "skillet.png", price: "15.50" },
+            { name: "Veggie/Subah Green", img: "skillet.png", price: "13.00" },
+            { name: "Steak Fajita", img: "skillet.png", price: "17.00" },
+            { name: "Bacon & Potato", img: "skillet.png", price: "14.00" },
+            { name: "Greek Skillet", img: "skillet.png", price: "14.50" },
+            { name: "Chicken Poblano", img: "skillet.png", price: "15.00" },
+            { name: "Sweet Chorizo", img: "skillet.png", price: "14.50" },
+            { name: "Gyro", img: "skillet.png", price: "15.50" },
+            { name: "Chicken Peri Peri", img: "skillet.png", price: "16.00" }
+        ],
+        "Pancakes": [
+            { name: "Morning Stack", img: "pancakes.jpg", price: "12.00" },
+            { name: "Subah Pancakes", img: "pancakes.jpg", price: "11.00" },
+            { name: "Banana Walnut", img: "pancakes.jpg", price: "13.00" },
+            { name: "Blueberry", img: "pancakes.jpg", price: "13.00" },
+            { name: "Cinnamon", img: "pancakes.jpg", price: "12.50" },
+            { name: "Red Velvet", img: "pancakes.jpg", price: "14.00" },
+            { name: "Pistachio", img: "pancakes.jpg", price: "15.00" }
+        ],
+        "Benedicts": [
+            { name: "Ham", img: "benedict.png", price: "13.50" },
+            { name: "Smoked Salmon", img: "benedict.png", price: "16.50" },
+            { name: "Bacon Avocado", img: "benedict.png", price: "14.50" },
+            { name: "Skirt Steak", img: "benedict.png", price: "18.00" }
+        ],
+        "Entrees": [
+            { name: "2 Egg w/ Hash Browns", img: "entree.png", price: "10.50" },
+            { name: "Pancakes & Meat", img: "entree.png", price: "13.00" },
+            { name: "Biscuits & Gravy", img: "entree.png", price: "11.00" },
+            { name: "Biscuits & Gravy w/ 2 Eggs", img: "entree.png", price: "13.50" },
+            { name: "Country Fried Steak", img: "entree.png", price: "15.50" },
+            { name: "12oz Ribeye", img: "entree.png", price: "24.00" },
+            { name: "Cornbeef Hash W/ Egg", img: "entree.png", price: "14.50" }
+        ],
+        "Waffles": [
+            { name: "Chicken Waffles", img: "waffle.png", price: "16.00" },
+            { name: "Date Pecan", img: "waffle.png", price: "13.50" },
+            { name: "Belgian", img: "waffle.png", price: "10.00" },
+            { name: "Banana Berry", img: "waffle.png", price: "13.00" },
+            { name: "Strawberry Chocolate Chip", img: "waffle.png", price: "13.00" },
+            { name: "Banana Sweet Bacon", img: "waffle.png", price: "14.50" }
+        ],
+        "Oatmeal": [
+            { name: "Apple Cinnamon", img: "oatmeal.png", price: "8.50" },
+            { name: "Triple Berry Acai", img: "oatmeal.png", price: "10.50" },
+            { name: "Yogurt Parfait", img: "oatmeal.png", price: "9.00" },
+            { name: "Raisin", img: "oatmeal.png", price: "7.50" },
+            { name: "Classic", img: "oatmeal.png", price: "7.00" }
+        ],
+        "Salads": [
+            { name: "Chopped", img: "salad.png", price: "13.00" },
+            { name: "Date Fruit", img: "salad.png", price: "14.00" },
+            { name: "Strawberry", img: "salad.png", price: "13.50" },
+            { name: "Caesar", img: "salad.png", price: "11.00" }
+        ],
+        "Sandwiches": [
+            { name: "Chema's Morning After", img: "sandwich.png", price: "14.00" },
+            { name: "Monte Cristo", img: "sandwich.png", price: "14.50" },
+            { name: "BLT", img: "sandwich.png", price: "11.50" },
+            { name: "Ruben", img: "sandwich.png", price: "14.00" },
+            { name: "BLTA", img: "sandwich.png", price: "12.50" },
+            { name: "Turkey Club", img: "sandwich.png", price: "13.50" },
+            { name: "Chicken Avocado", img: "sandwich.png", price: "14.00" },
+            { name: "Italian Beef", img: "sandwich.png", price: "15.00" },
+            { name: "8oz Ribeye", img: "sandwich.png", price: "19.00" },
+            { name: "Philly Steak", img: "sandwich.png", price: "15.50" },
+            { name: "Clubhouse", img: "sandwich.png", price: "14.50" }
+        ],
+        "Wrap": [
+            { name: "BBQ Chicken", img: "wrap.png", price: "13.00" },
+            { name: "BLTA", img: "wrap.png", price: "12.50" },
+            { name: "Buffalo", img: "wrap.png", price: "13.00" },
+            { name: "Grilled Chicken", img: "wrap.png", price: "13.00" },
+            { name: "Breakfast Burrito", img: "wrap.png", price: "12.00" },
+            { name: "Vegan Quesadilla", img: "wrap.png", price: "14.00" }
+        ],
+        "French Toast": [
+            { name: "Strawberry", img: "french_toast.png", price: "12.50" },
+            { name: "Banana Pecan", img: "french_toast.png", price: "13.50" },
+            { name: "Stuffed Sweet Churros", img: "french_toast.png", price: "14.50" },
+            { name: "Apple Cinnamon", img: "french_toast.png", price: "12.50" },
+            { name: "Banana Nut", img: "french_toast.png", price: "13.50" }
+        ],
+        "Crepes": [
+            { name: "Strawberry Nutella", img: "crepe.png", price: "12.00" },
+            { name: "Whole Berries", img: "crepe.png", price: "13.00" },
+            { name: "Banana Coconut", img: "crepe.png", price: "12.00" },
+            { name: "Spinach", img: "crepe.png", price: "13.50" },
+            { name: "Ham & Cheese", img: "crepe.png", price: "13.50" },
+            { name: "House", img: "crepe.png", price: "11.00" }
+        ],
+        "Burgers": [
+            { name: "Classic", img: "burger.png", price: "13.00" },
+            { name: "Hung Over", img: "burger.png", price: "15.50" },
+            { name: "Smoked", img: "burger.png", price: "15.00" },
+            { name: "Jalapeno", img: "burger.png", price: "14.50" },
+            { name: "Pepper Jack", img: "burger.png", price: "14.50" }
+        ],
+        "Sides": [
+            { name: "Toast", img: "side.png", price: "3.00" },
+            { name: "Hashbrowns", img: "side.png", price: "4.00" },
+            { name: "Beef Bacon", img: "side.png", price: "5.50" },
+            { name: "Sweet Potato Fries", img: "side.png", price: "5.00" }
+        ],
+        "Kids": [
+            { name: "Kids Grilled Cheese", img: "kids.png", price: "7.00" },
+            { name: "Kids Burger", img: "kids.png", price: "8.50" },
+            { name: "Kids Pancakes", img: "kids.png", price: "7.50" }
+        ],
+        "Drinks": [
+            { name: "Coffee", img: "drink.png", price: "3.50" },
+            { name: "Matcha Selection", img: "drink.png", price: "5.50" },
+            { name: "Lavender Creme", img: "drink.png", price: "6.00" }
+        ]
+    };
+
+    // 2. ELEMENT REFERENCES
+    const tabContainer = document.getElementById('category-tabs');
+    const menuDisplay = document.getElementById('menu-display');
+    const hamburger = document.getElementById('hamburger');
+    const navbar = document.getElementById('main-nav');
+
+    // 3. NAVIGATION LOGIC
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navbar.classList.toggle('mobile-active');
+    });
+
+    // 4. TAB GENERATION
+    Object.keys(menuData).forEach((category, index) => {
+        const btn = document.createElement('button');
+        btn.className = `category-tab ${index === 0 ? 'active' : ''}`;
+        btn.textContent = category;
+        btn.onclick = () => switchCategory(category, btn);
+        tabContainer.appendChild(btn);
+    });
+
+    // 5. THE MAIN SWITCH FUNCTION
+    function switchCategory(category, btn) {
+        document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        
+        menuDisplay.innerHTML = '';
+        
+        menuData[category].forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'menu-card';
+            
+            card.innerHTML = `
+                <div class="image-box">
+                    <img src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1495147466023-ac5c58afee7f?q=80&w=800'">
+                    <div class="price-tag">$${item.price}</div>
+                </div>
+                <div class="card-content">
+                    <h3>${item.name}</h3>
+                    <p>A classic Subah selection prepared with fresh ingredients and artisanal seasoning.</p>
+                    <button class="read-more-btn" onclick="toggleNutrition(this)">Nutritional Facts</button>
+                </div>
+                <div class="nutrition-overlay">
+                    <h3 style="margin-bottom:0.25rem; font-size: 1.25rem;">Nutritional Facts</h3>
+                    <div class="nutrition-grid">
+                        <div class="nutrition-item"><span>Calories</span><strong>${Math.floor(Math.random()*600 + 200)}</strong></div>
+                        <div class="nutrition-item"><span>Protein</span><strong>${Math.floor(Math.random()*35 + 5)}g</strong></div>
+                        <div class="nutrition-item"><span>Fat</span><strong>${Math.floor(Math.random()*25 + 5)}g</strong></div>
+                        <div class="nutrition-item"><span>Carbs</span><strong>${Math.floor(Math.random()*55 + 10)}g</strong></div>
+                    </div>
+                    <button class="close-nutrition" onclick="toggleNutrition(this)">Back to Menu</button>
+                </div>
+            `;
+            menuDisplay.appendChild(card);
+        });
+    }
+
+    // 6. TOGGLE OVERLAY
+    function toggleNutrition(btn) {
+        const card = btn.closest('.menu-card');
+        const overlay = card.querySelector('.nutrition-overlay');
+        overlay.classList.toggle('active');
+    }
+
+    // 7. AUTO-LOAD ON STARTUP (Fixed "Blank Page" issue)
+    document.addEventListener('DOMContentLoaded', () => {
+        const firstTab = document.querySelector('.category-tab');
+        if (firstTab) {
+            switchCategory("Omelets", firstTab);
+        }
+    });
+
+</script>
+    
+</body></html>

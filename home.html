@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Let's Café | Artisanal Coffee Experience</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* CSS Variables based on Design System DESIGN_SYSTEM_1 */
+        :root {
+            --primary: #4B3621;
+            --on-primary: #ffffff;
+            --background: #fbf9f5;
+            --surface: #efeeea;
+            --surface-low: #f5f3ef;
+            --text-main: #1b1c1a;
+            --text-variant: #4e453d;
+            --secondary: #5e604d;
+            --tertiary: #002c02;
+            --on-tertiary: #ffffff;
+            --border-radius: 0.5rem; /* ROUND_EIGHT */
+            --font-headline: 'Noto Serif', serif;
+            --font-body: 'Manrope', sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-headline);
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navbar */
+      /* --- MERGED NAVBAR STYLES --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 80px;
+    background: #ffffff;
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(75, 54, 33, 0.1);
+    padding: 2vw;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* KEEPING YOUR LOGO DIMENSIONS */
+.logo-link {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    width: 200px;
+    overflow: hidden;
+}
+
+.nav-logo-img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    object-position: left center;
+}
+
+/* DESKTOP LINKS */
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    font-family: var(--font-headline);
+    font-size: 0.95rem;
+    color: var(--text-variant);
+    padding-bottom: 4px;
+}
+
+.nav-links a.active, .nav-links a:hover {
+    color: var(--primary);
+    border-bottom: 2px solid var(--primary);
+}
+
+/* HAMBURGER BUTTON (Hidden on Desktop) */
+#menu-toggle {
+    display: none;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 99px;
+    cursor: pointer;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-weight: 600;
+}
+
+/* PUSH-DOWN OVERLAY */
+#site-menu-overlay {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background: var(--background);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+    z-index: 999;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+#site-menu-overlay.is-open {
+    max-height: 100vh;
+}
+
+.overlay-content {
+    padding: 3rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.overlay-col h4 {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    color: var(--secondary);
+    margin-bottom: 1rem;
+}
+
+.overlay-col ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.overlay-col a {
+    font-family: var(--font-headline);
+    font-size: 1.25rem;
+    color: var(--primary);
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    #menu-toggle { display: flex; }
+    
+    .logo-link {
+        height: 45px;
+        width: 150px;
+    }
+}
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 85vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+
+        .hero-card {
+            background: rgba(251, 249, 245, 0.1);
+            backdrop-filter: blur(8px);
+            padding: 3rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            max-width: 650px;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            font-style: italic;
+            color: #fedcbe; /* Light coffee accent */
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+        }
+
+        /* Bento Grid */
+        .bento-section {
+            padding: 6rem 0;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+
+        .card {
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            transition: var(--transition);
+            overflow: hidden;
+        }
+
+        /* Story Card */
+        .card-story {
+            grid-column: span 8;
+            background: var(--surface);
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .story-content { flex: 1; }
+        .story-image { flex: 1; height: 350px; }
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+        }
+
+        .tagline {
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.8rem;
+            color: var(--secondary);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-story h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem; }
+
+        /* Menu Card */
+        .card-menu {
+            grid-column: span 4;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .card-menu .icon-bg {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 6rem;
+            opacity: 0.1;
+        }
+
+        .menu-list { margin: 2rem 0; }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.75rem 0;
+        }
+        .menu-item span:last-child { font-style: italic; font-family: var(--font-headline); }
+
+        .btn-menu-full {
+            background: white;
+            color: var(--primary);
+            width: 100%;
+            padding: 0.8rem;
+            text-align: center;
+            font-weight: 700;
+            border-radius: var(--border-radius);
+        }
+
+        /* Half Width Cards */
+        .card-half {
+            grid-column: span 6;
+            background: var(--surface-low);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .card-half .thumb {
+            width: 140px;
+            height: 140px;
+            flex-shrink: 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+        .card-half .thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+        .card-shop { background: #e1e1c9; }
+
+        /* Feature Card */
+        .card-brewing {
+            grid-column: span 7;
+            position: relative;
+            height: 350px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .card-brewing img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.6);
+        }
+
+        .badges { display: flex; gap: 0.5rem; margin-top: 1rem; }
+        .badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+        }
+        .badge-new { background: #bcf0ae; color: #002c02; }
+        .badge-time { background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(4px); }
+
+        /* Events Card */
+        .card-events {
+            grid-column: span 5;
+            background: var(--tertiary);
+            color: var(--on-tertiary);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .event-box {
+            background: rgba(22, 67, 19, 0.5);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .event-date {
+            text-align: center;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            padding-right: 1rem;
+        }
+        .event-date .month { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+        .event-date .day { font-size: 1.5rem; font-family: var(--font-headline); }
+
+        /* Footer */
+        footer {
+            background: #efeeea;
+            padding: 5rem 0 2rem;
+            border-top: 1px solid #d2c4ba;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-col h4 { margin-bottom: 1.5rem; color: var(--primary); }
+        .footer-col p { font-size: 0.9rem; color: var(--text-variant); max-width: 250px; }
+        .footer-col li { margin-bottom: 0.8rem; font-size: 0.9rem; color: var(--text-variant); }
+
+        .footer-bottom {
+            border-top: 1px solid #d2c4ba;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-variant);
+        }
+
+        .social-icons { display: flex; gap: 1.5rem; color: var(--text-variant); }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .active {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .bento-grid { grid-template-columns: repeat(1, 1fr); }
+            .card-story, .card-menu, .card-half, .card-brewing, .card-events { grid-column: span 12; }
+            .hero h1 { font-size: 3rem; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .card-story { flex-direction: column; }
+            .nav-links { display: none; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
+
+        .material-symbols-outlined {
+            vertical-align: middle;
+             .logo-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Update these specific rules in your <style> tag */
+
+//* Navbar Styles */
+       
+
+        /* Updated Logo Implementation */
+/* Updated Logo Implementation - Smaller & Contained */
+.logo-link {
+    display: flex;
+    align-items: center;
+    height: 60px;          /* Strictly caps the height */
+    width: 200px;         /* Caps the width so it doesn't push the menu */
+    padding: 5px 0;
+    overflow: hidden;      /* Anything larger than 60px is 'cut off' */
+    transition: var(--transition);
+}
+
+.logo-link:hover {
+    opacity: 0.8;
+}
+
+.nav-logo-img {
+   display: block;
+    height: 100% !important; /* Force it to be exactly the height of the .logo-link */
+    width: 100% !important;  /* Force it to fill the width */
+    
+    /* CRITICAL: This prevents the 'squishing' look. 
+       'contain' keeps the whole logo visible without stretching it. */
+    object-fit: contain; 
+    
+    /* Ensures the logo stays to the left of its container */
+    object-position: left center;
+}
+
+/* Mobile Adjustment */
+@media (max-width: 768px) {
+    .logo-link {
+        height: 35px; /* Even smaller for mobile headers */
+        max-width: 150px;
+    }
+}
+
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { font-family: var(--font-headline); font-size: 0.95rem; color: var(--text-variant); }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); border-bottom: 2px solid var(--primary); }
+
+        .btn-contact {
+            background: var(--primary);
+            color: var(--on-primary);
+            padding: 0.6rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .nav-links-desktop a {
+            color: var(--on-surface-variant);
+        }
+
+        .nav-links-desktop a.active {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .contact-us-btn {
+            background-color: var(--primary);
+            color: var(--on-primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .contact-us-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+       /* Ensure the button is visible on mobile and hidden on desktop */
+
+        }
+        /* Reviews Section */
+.reviews-section {
+    padding: 80px 0;
+    background-color: var(--surface-variant);
+    overflow: hidden;
+}
+
+.reviews-window {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.reviews-track {
+    display: flex;
+    width: calc(350px * 8); /* Adjust based on card width + gap */
+    animation: scroll 30s linear infinite;
+}
+
+.review-card {
+    width: 350px;
+    background: white;
+    margin: 0 1rem;
+    padding: 2.5rem;
+    border-radius: var(--radius-default);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stars {
+    color: #FFD700;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.review-card p {
+    font-style: italic;
+    color: var(--on-surface-variant);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.author {
+    font-weight: 800;
+    font-family: var(--font-headline);
+    color: var(--primary);
+}
+
+/* Halal Section */
+.halal-container {
+    margin-top: 4rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.halal-logo {
+    height: 80px;
+    width: auto;
+    opacity: 0.8;
+}
+
+.halal-container p {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--secondary);
+}
+
+/* Animation */
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-350px * 4)); }
+}
+
+/* Pause on hover */
+.reviews-track:hover {
+    animation-play-state: paused;
+}
+    </style>
+</head>
+<body>
+<nav class="navbar">
+    <div class="container nav-content">
+        <a href="/" class="logo-link">
+            <img src="Subahweblogo.png" width="150px" height="auto"  alt="Subah Café Logo" class="nav-logo-img">
+        </a>
+
+        <div class="nav-links">
+            <a class="active" href="home.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="location.html">Location</a>
+            <a href="https://www.toasttab.com/local/order/subah-cafe-101-south-main-street">Shop</a>
+        </div>
+    </div>
+   <button id="menu-toggle">
+            <span class="material-symbols-outlined" style="font-size: 32px;">menu</span>
+        </button>
+    </div>
+
+    <div id="site-menu-overlay">
+        <div class="overlay-content">
+            <a href="home.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="location.html">Locations</a>
+            <a href="https://www.toasttab.com/local/order/subah-cafe-101-south-main-street">Shop</a>
+        </div>
+    </div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="hero">
+<div class="hero-bg">
+<img alt="Perfect Pour" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1gG1-clirxyffX9foZQdS_7yXeJbUF5AXqVbqY8XvomBK7O_Qn8i-ejHnPcCXtWYQDIckSGk_rBCZxLI0AvfF72nFMObqmAGbwpiIuxw_0J61bn6wkDBKxXWfXkP_sBTX0IcN3AGeBOAop94Je2hjJexQfGb_H6uvHYtaQ8piSuu4xjx2BeFF_w2XG6PW5NcW_TmVYdAuZAUHULKBnlTkCzh0gF7suYVexo1VzT62B2wBPBpT2iFzUxLnAmEyFgyQd9_8m80zvT4"/>
+</div>
+<div class="container">
+<div class="hero-card reveal">
+<h1>The Art of <span>Breakfast</span> at Subah.</h1>
+<p>Start your day with a cup of coffee and a delicious breakfast at Subah Café.</p>
+<div class="hero-btns">
+<a class="btn-primary" href="menu.html">Explore Our Menu</a>
+<a class="btn-secondary" href="location.html">Visit Us</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Section -->
+<section class="bento-section">
+<div class="container bento-grid">
+<!-- Our Story -->
+<div class="card card-story reveal-left">
+<div class="story-content">
+<span class="tagline">Since 2026</span>
+<h2>Our How To</h2>
+<p>Learn how we create the craved morning experience at Subah Café.</p>
+<a href="menu.html" style="font-weight: 700; color: var(--primary); margin-top: 1rem; display: block;">Read the Meals →</a>
+</div>
+<div class="story-image">
+<img alt="Our Cafe" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgRmP8MS6A0VxfQhQ7mNn1JRRyvz7TlEokyrADZ9zJqtVZbOkCXVcnSl19bMga6mBNpDqDHevXNmqfVQH5y_LiVVDaF2vms8K75--pzMt-Lvmj-OO97QRwZkNgE56bbG-_jCpSfVIZn7UGRVD6mOqQIBFh-cHBct8mO-AiJJFqN7V-MZsl5zA2TDNSftYCFHJul9lBwEWW7SxRjW8dQ5K4kA2dbpidPdpgcjXlift-S6jkCmvlKD4OWO_Zx-vRVFA4rQgSiL3dCNQ"/>
+</div>
+</div>
+<!-- Menu -->
+<div class="card card-menu reveal-right">
+<span class="material-symbols-outlined icon-bg">coffee</span>
+<div>
+<h2>The Menu</h2>
+<p style="opacity: 0.8; font-size: 0.9rem;">Seasonal blends, single-origin roasts, and artisan pastries baked daily.</p>
+</div>
+<div class="menu-list">
+<div class="menu-item">
+<span>Chilaquiles</span>
+<span>$17.50</span>
+</div>
+<div class="menu-item">
+<span>Chicken Poblano Omelet</span>
+<span>$19.00</span>
+</div>
+<div class="menu-item">
+<span>Red Velvet Pancakes</span>
+<span>$19.00</span>
+</div>
+</div>
+<a class="btn-menu-full" href="fullmenu.html">View Full Menu</a>
+</div>
+<!-- Locations -->
+<div class="card card-half reveal">
+<div class="thumb">
+<img alt="Location" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqFUiaVQHw8R3VHAV546HD49PkdgDGn1rJr6McTf-T5R-RCskn1O3-VCa5vVL13Q1j02sQgU-zI1yDYbkhdyiQzS9xpbyGUyc3QVQjKfG12kAjbZk9MQ1UiF-GoMGNd0R4uXT2wYCJcx6riY8tVREH99uLnyAudhKrijWjItDH-6akKDqFAaCKFZkCFfLKCUL-8pRw7owxbPOTiNz9hzIr7qnDGZ96L_YyiT2k3BFKqdDESYzF52bUlxgPO5-TLcZBm1gykoB7Y78"/>
+</div>
+<div>
+<h3>Locations</h3>
+<p style="font-size: 0.85rem; color: var(--text-variant); margin-bottom: 0.5rem;">Find us in Downtown Lombard, a hotspot.</p>
+<a href="location.html" style="text-decoration: underline; font-weight: 700; font-size: 0.85rem;">Get Directions</a>
+</div>
+</div>
+<!-- Shop -->
+<div class="card card-half card-shop reveal">
+<div class="thumb">
+<img alt="Beans" src="Subahbq9ml.png"/>
+</div>
+<div>
+<h3>Shop</h3>
+<p style="font-size: 0.85rem; color: var(--text-variant); margin-bottom: 0.5rem;">Bring what you are ready to order!</p>
+<a href="https://www.toasttab.com/local/order/subah-cafe-101-south-main-street" style="font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; gap: 4px;">Browse Shop <span class="material-symbols-outlined" style="font-size: 1rem;">shopping_bag</span></a>
+</div>
+</div>
+<!-- Brewing Guide -->
+<div class="card card-brewing reveal-left"> <a href="brewing.html">
+<img alt="Brewing" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvMz2KnzqyVxxDYTFlnonjJM9cLe1vw_qra3XxI3vZ1mUOMvtUngHQ-hvlFqKoa4RxttRA6yB9b9B-CnA2ZBD7IN7dRuRO92p21jjHMrZ_HTgcDB-8ofZUBI9F6uMV-PR64ULtQxodB02vuUSIzSOKwGZMBOf4NB53jT1sYVYaEzai4OQA3HRyvmfSFlfMbx5eovbbU6oURdFUfI-nL8yXcOANNXAHfsEK7G-JiMwbiDfg4LL1qMQyE-Q9cjJtls80admGVNDn9WY"/>
+<div>
+<h2>Brewing Guide</h2>
+<p style="max-width: 300px;">Find the brewing method for your taste preferences.</p>
+<div class="badges">
+<span class="badge badge-new">New Guide</span>
+</a>
+</div>
+</div>
+</div>
+<!--
+<div class="card card-events reveal-right">
+<div>
+<span class="material-symbols-outlined" style="font-size: 2rem;">Deals_today</span>
+<h2 style="margin-top: 1rem;">Upcoming Discounts</h2>
+<p style="font-size: 0.85rem; opacity: 0.8; margin-top: 0.5rem;">Join us for coffee cuppings and workshops every Friday.</p>
+</div>
+<div class="event-box">
+<div class="event-date">
+<div class="month">Oct</div>
+<div class="day">24</div>
+</div>
+ <div class="event-info">
+<p style="font-weight: 600; font-size: 0.9rem;">Coffee Cupping: Ethiopian Roasts</p>
+</div>
+</div>
+<a href="#" style="text-align: center; color: #bcf0ae; font-weight: 700; margin-top: 1.5rem;">See Calendar</a>
+</div>
+</div>  --> 
+</section> 
+<section class="reviews-section">
+    <div class="container">
+        <span class="hero-tag" style="text-align: center; display: block;">Guest Experiences</span>
+        <h2 style="text-align: center; margin-bottom: 3rem;">What People Are Saying</h2>
+        
+        <div class="reviews-window">
+            <div class="reviews-track">
+                <!-- Review 1 -->
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Went as a party of 4, amazing service and the food was excellent. They literally had optioned catering to everyone! This was just the soft opening but they were still so accommodating and sweet! Definitely my new favorite brunch spot in town!"</p>
+                    <span class="author">— Sofia Raoof</span>
+                </div>
+                <!-- Review 2 -->
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Exceptional experience at Subah. The attention to detail and the quality of the ingredients really stand out. A wonderful addition to the neighborhood."</p>
+                    <span class="author">— Mohammed Aslam</span>
+                </div>
+                <!-- Review 3 -->
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Subah’s is a gem!!!"</p>
+                    <span class="author">— Michael Barrera</span>
+                </div>
+                <!-- Review 4 -->
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Loved the place, great food, great ambiance and everyone was very friendly. Highly recommend this place!"</p>
+                    <span class="author">— Huma Ahmed</span>
+                </div>
+                <!-- Duplicate for Infinite Loop -->
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Went as a party of 4, amazing service and the food was excellent..."</p>
+                    <span class="author">— Sofia Raoof</span>
+                </div>
+            </div>
+        </div>
+<!--
+        <div class="halal-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Halal_logo.svg/1200px-Halal_logo.svg.png" alt="Halal Certified" class="halal-logo">
+            <p> Halal Ingredients</p>
+        </div>
+    </div>
+</section> -->
+</main>
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-col">
+<div class="logo" style="margin-bottom: 1.5rem;">Subah Cafe</div>
+<p>Fuel your morning, sustain your day. From the first pour of a coffee to our signature midday bites, Subah is here to help.</p>
+</div>
+<div class="footer-col">
+<h4>Explore</h4>
+<ul>
+<li><a href="#">Menu</a></li>
+<li><a href="#">Shop</a></li>
+<li><a href="#">Location</a></li>
+<li><a href="#">Brewing Guide</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Connect</h4>
+</div>
+<div class="footer-col">
+<h4>Legal</h4>
+<ul>
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2026 Subah Cafe.</p>
+<div class="social-icons">
+<span class="material-symbols-outlined">coffee</span>
+<span class="material-symbols-outlined">restaurant</span>
+<span class="material-symbols-outlined">eco</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Standard JS for Scroll Reveal Animations
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        
+        const revealOnScroll = () => {
+            const triggerBottom = window.innerHeight * 0.9;
+            
+            revealElements.forEach(el => {
+                const boxTop = el.getBoundingClientRect().top;
+                if(boxTop < triggerBottom) {
+                    el.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        // Initial call
+        revealOnScroll();
+
+
+
+
+        const menuToggle = document.getElementById('menu-toggle');
+const menuOverlay = document.getElementById('site-menu-overlay');
+const menuIcon = menuToggle.querySelector('.material-symbols-outlined');
+
+menuToggle.addEventListener('click', () => {
+    menuOverlay.classList.toggle('is-open');
+    
+    // Switch icon between 'menu' and 'close'
+    if (menuOverlay.classList.contains('is-open')) {
+        menuIcon.textContent = 'close';
+    } else {
+        menuIcon.textContent = 'menu';
+    }
+});
+    </script>
+</body></html>
